@@ -1,0 +1,205 @@
+<div class="container text-center">
+  <h3>add-student works!</h3>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form
+        #saveStudentForm="ngForm"
+        (ngSubmit)="
+          saveStudentForm.valid && handleAddNewStudent(saveStudentForm)
+        "
+        novalidate
+      >
+        <div class="card p-2">
+          <div class="card-header bg-primary p-4">
+            <h4 class="text-center text-light">Add New Student</h4>
+          </div>
+          <div class="row">
+            <!-- First Column -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter name"
+                  class="form-control"
+                  required
+                  minlength="3"
+                  maxlength="20"
+                  [(ngModel)]="student.sName"
+                  #name="ngModel"
+                />
+                <div *ngIf="name.touched && name.invalid">
+                  <div *ngIf="name.errors && name.errors['required']">
+                    <p class="text-danger">Name is required!</p>
+                  </div>
+                  <div *ngIf="name.errors && name.errors['minlength']">
+                    <p class="text-danger">Minimum 3 characters!</p>
+                  </div>
+                  <div *ngIf="name.errors && name.errors['maxlength']">
+                    <p class="text-danger">Maximum 20 characters!</p>
+                  </div>
+                </div>
+              </div>
+              <div [className]="'form-group'">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter email address"
+                  [className]="'form-control'"
+                  #email="ngModel"
+                  required=""
+                  ngModel=""
+                  [(ngModel)]="student.sEmail"
+                  [class.is-invalid]="email.touched && email.invalid"
+                  pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+                  maxlength="25"
+                  minlength="5"
+                  id="email"
+                />
+                <div *ngIf="email.touched && email.invalid">
+                  <div *ngIf="email.errors && email.errors['required']">
+                    <p [className]="'text-danger'">Email is required!</p>
+                  </div>
+
+                  <div *ngIf="email.errors && email.errors['pattern']">
+                    <p [className]="'text-danger'">Email is incorrect form!!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="class">Class</label>
+                <select
+                  name="class"
+                  id="class"
+                  #class="ngModel"
+                  class="form-control"
+                  ngModel
+                  id="class"
+                  [(ngModel)]="student.sClass"
+                  required
+                  [class.is-invalid]="class.touched && class.invalid"
+                >
+                  <option value="" selected>--Select--</option>
+                  <option value="1 ">1</option>
+                  <option value="2">2 class</option>
+                  <option value="3">3 class</option>
+                  <option value="4th">4th class</option>
+                  <option value="5th">5th class</option>
+                  <option value="6th">6th class</option>
+                  <option value="7th">7th class</option>
+                  <option value="8th">8th class</option>
+                  <option value="9th">9th class</option>
+                  <option value="10th">10th class</option>
+                  <option value="11">11 class</option>
+                  <option value="12">12 class</option>
+                </select>
+                <div *ngIf="class.touched && class.invalid">
+                  <div *ngIf="class.errors && class.errors['required']">
+                    <p [className]="'text-danger'">Class is required!</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Other input fields -->
+            </div>
+            <!-- Second Column -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input
+                  type="number"
+                  name="sAge"
+                  placeholder="Enter Age"
+                  class="form-control"
+                  required
+                  min="3"
+                  max="20"
+                  [(ngModel)]="student.sAge"
+                  #age="ngModel"
+                />
+                <div *ngIf="age.touched && age.invalid">
+                  <div *ngIf="age.errors && age.errors['required']">
+                    <p class="text-danger">Age is required!</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Other input fields -->
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Enter phone "
+                  [className]="'form-control'"
+                  required
+                  minlength="11"
+                  maxlength="15"
+                  id="phone"
+                  ngModel
+                  #phone="ngModel"
+                  [(ngModel)]="student.sPhone"
+                  [class.is-invalid]="phone.touched && phone.invalid"
+                />
+
+                <div *ngIf="phone.touched && phone.invalid">
+                  <div *ngIf="phone.errors && phone.errors['required']">
+                    <p [className]="'text-danger'">Phone is require!</p>
+                  </div>
+                  <div *ngIf="phone.errors && phone.errors['minlength']">
+                    <p [className]="'text-danger'">Minimum 11 char!</p>
+                  </div>
+                </div>
+                <div [className]="'form-group'">
+                  <label for="address">Address</label>
+                  <input
+                    type="text"
+                    name="address"
+                    placeholder="Enter  address"
+                    [className]="'form-control'"
+                    #address="ngModel"
+                    required=""
+                    ngModel=""
+                    id="address"
+                    [(ngModel)]="student.sAddress"
+                    [class.is-invalid]="address.touched && address.invalid"
+                    maxlength="30"
+                    minlength="3"
+                  />
+                  <div *ngIf="address.touched && address.invalid">
+                    <div *ngIf="address.errors && address.errors['required']">
+                      <p [className]="'text-danger'">address is required!</p>
+                    </div>
+                    <div *ngIf="address.errors && address.errors['minlength']">
+                      <p [className]="'text-danger'">Minimum 5 char!</p>
+                    </div>
+                    <div *ngIf="address.errors && address.errors['maxlength']">
+                      <p [className]="'text-danger'">Maximum 30 char!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Button row -->
+          <div class="text-center my-2 d-grid mt-2">
+            <button
+              class="btn btn-primary btn-sm"
+              [disabled]="saveStudentForm.form.invalid"
+            >
+              Save
+            </button>
+            <button
+              class="btn btn-secondary btn-sm my-1"
+              (click)="resetForm(saveStudentForm)"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

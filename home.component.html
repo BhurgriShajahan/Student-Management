@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="container">
+      <h3 class="text-center mt-2">All Students Data</h3>
+
+      <!-- Search Field -->
+      <div class="row mb-3">
+        <div class="col-md-6 offset-md-3">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search by Name, Phone, or Address"
+              [(ngModel)]="searchTerm"
+              #searchInput
+            />
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button" (click)="search()">
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <div class="row">
+          <div [className]="'col-md-12'">
+            <!-- Display Search Results -->
+            <div *ngIf="searchResults.length > 0">
+              <h2>Search Results</h2>
+              <table
+                class="table table-hover table-dark table-striped table-light"
+              >
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>ADDRESS</th>
+                    <th>PHONE</th>
+                    <th>AGE</th>
+                    <th>CLASS</th>
+                    <th [className]="'text-center'">ACTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let student of searchResults">
+                    <!-- Student Data -->
+                    <td>{{ student.sId }}</td>
+                    <td>{{ student.sName | titlecase }}</td>
+                    <td>{{ student.sEmail }}</td>
+                    <td>{{ student.sAddress | titlecase }}</td>
+                    <td>{{ student.sPhone }}</td>
+                    <td>{{ student.sAge }}</td>
+                    <td>{{ student.sClass }}</td>
+                    <td>
+                      <button
+                        class="btn btn-success btn-sm m-1"
+                        (click)="handleUpdateStudent(student)"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        class="btn btn-info btn-sm m-1"
+                        (click)="handleDetails(student)"
+                      >
+                        Details
+                      </button>
+                      <button
+                        class="btn btn-danger btn-sm m-1"
+                        (click)="deleteById(student.sId)"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- End Display Search Results -->
+
+            <!-- Display All Students -->
+            <div *ngIf="searchResults.length === 0">
+              <table
+                class="table table-hover table-dark table-striped table-light"
+              >
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>ADDRESS</th>
+                    <th>PHONE</th>
+                    <th>AGE</th>
+                    <th>CLASS</th>
+                    <th [className]="'text-center'">ACTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let student of students">
+                    <!-- Student Data -->
+                    <td>{{ student.sId }}</td>
+                    <td>{{ student.sName | titlecase }}</td>
+                    <td>{{ student.sEmail }}</td>
+                    <td>{{ student.sAddress | titlecase }}</td>
+                    <td>{{ student.sPhone }}</td>
+                    <td>{{ student.sAge }}</td>
+                    <td>{{ student.sClass }}</td>
+                    <td>
+                      <button
+                        class="btn btn-success btn-sm m-1"
+                        (click)="handleUpdateStudent(student)"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        class="btn btn-info btn-sm m-1"
+                        (click)="handleDetails(student)"
+                      >
+                        Details
+                      </button>
+                      <button
+                        class="btn btn-danger btn-sm m-1"
+                        (click)="deleteById(student.sId)"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- End Display All Students -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<div [className]="'container text-center col-md-4 mt-2'">
+  <div [className]="'card col-md-12'">
+    <div [className]="'card-header bg-info p-4 '">
+      <h5>{{ "all details about " + studentDetails.sName | titlecase }}</h5>
+    </div>
+    <div [className]="'card-body bg-dark text-center text-light'">
+      <label for="" [className]="'lab'">Student Name</label>
+      <br />
+      <h6>
+        {{ studentDetails.sName | titlecase }}
+      </h6>
+      <label for="" [className]="'lab'">Student Email</label>
+      <br />
+      <h6>
+        {{ studentDetails.sEmail }}
+      </h6>
+      <label for="" [className]="'lab'">Student Address</label>
+      <br />
+      <h6>
+        {{ studentDetails.sAddress | titlecase }}
+      </h6>
+      <label for="" [className]="'lab'">Student Age</label>
+      <br />
+      <h6>
+        {{ studentDetails.sAge }}
+      </h6>
+      <label for="" [className]="'lab'">Student Phone</label>
+      <br />
+      <h6>
+        {{ studentDetails.sPhone }}
+      </h6>
+      <label for="" [className]="'lab'">Student Class</label>
+      <br />
+      <h6>
+        {{ studentDetails.sClass | titlecase }}
+      </h6>
+    </div>
+
+    <div [className]="'card-footer d-grid bg-dark'">
+      <button class="btn btn-info btn-sm" routerLink="/">Back</button>
+    </div>
+  </div>
+</div>
